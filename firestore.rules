@@ -1,0 +1,9 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{allPaths=**} {
+      allow read, write, update, delete, get, list;
+    }
+  }
+}

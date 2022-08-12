@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "default": "<<YOUR-PROJECT-ID>>"
+  },
+  "targets": {
+    "<<YOUR-PROJECT-ID>>": {
+      "hosting": {
+        "policy": [
+          "<<RESPECTIVE-SITE-ID>>"
+        ],
+        "production": [
+          "<<RESPECTIVE-SITE-ID>>"
+        ],
+        "test": [
+          "<<RESPECTIVE-SITE-ID>>"
+        ]
+      }
+    }
+  }
+}
