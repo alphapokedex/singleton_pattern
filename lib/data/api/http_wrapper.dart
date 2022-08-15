@@ -12,12 +12,21 @@ import 'package:singleton_pattern/data/model/model_export.dart';
 import 'package:singleton_pattern/ui/components/components.dart';
 import 'package:singleton_pattern/utilities/core.dart';
 
+/// Http is a helper class made upon DRY principle and
+/// uses Generic technique for dynamic model parsing if used correctly
+///
+/// Provides following features:
+/// * Generic model parsing (needs to be checked in [_handleRequest] method)
+/// * Auto logout
+/// * Loader (optional)
+/// * Debug logging
+/// * File upload (web and mobile)
+/// * Basic auth
+/// * Crashylatics for internal server error upon client request
 class Http with Core, Components, LogUtil {
-  factory Http() => _singleton;
-
   Http._();
-
   static final Http _singleton = Http._();
+  factory Http() => _singleton;
 
   /// [Http] singleton instance for public use.
   static Http get i => _singleton;
@@ -39,6 +48,10 @@ class Http with Core, Components, LogUtil {
     String? token, basicAuthToken;
     late Response mongoResponse;
     late ApiResponse<T> returnResponse;
+
+    /// [Uri] with [ApiConfig] set before [runApp] in [app_root.dart]
+    /// following [endpoint] after base url/domain and [queryParams]
+    /// can be passed to customize the req
     Uri uri = Uri(
       scheme: ApiConfig.i.scheme,
       host: ApiConfig.i.baseUri.path,
@@ -48,7 +61,10 @@ class Http with Core, Components, LogUtil {
     );
 
     if (authorizedRequest) token = PreferenceBox.i.token;
-    assert(authorizedRequest && token == null, '');
+    assert(
+      authorizedRequest && token == null,
+      'token must not be null for authorized requests',
+    );
     if (basicAuth) basicAuthToken = ApiConfig.i.basicAuth;
 
     final Map<String, String> headers = {
@@ -60,14 +76,18 @@ class Http with Core, Components, LogUtil {
     };
 
     try {
+      /// token and body logging for monitoring purposes
       if (!kIsWeb && kDebugMode && token != null) {
         wtfLog('Token >> \n$token');
         if (body != null) {
           debugLog('Request body >> \n$body');
         }
       }
+
+      /// if enabled shows loader before request is triggered
       if (loader) navigator.showLoader();
 
+      /// [ReqType] based client "METHOD" call
       switch (reqType) {
         case ReqType.get:
           mongoResponse = await get(
@@ -110,10 +130,13 @@ class Http with Core, Components, LogUtil {
 
       returnResponse = await _handleRequest(mongoResponse);
     } catch (error, stack) {
+      /// On [SocketExpection] which generally occurs on internet
+      /// outage or server side connection being closed abruptly
       if (error.runtimeType is SocketException) {
         ConnectivityService.i.updateStatus(isConnected: false);
       }
 
+      /// Error logging if something goes wrong
       if (!kIsWeb && kDebugMode) errorLog('Error on \n >> $uri');
 
       debugPrint(error.toString());
@@ -124,11 +147,18 @@ class Http with Core, Components, LogUtil {
         errorMessage: error.toString(),
       );
     } finally {
+      /// if enabled hides loader after the
+      /// corresponding request future completes
       if (loader) navigator.hideLoader();
     }
+
+    /// returns respective [ApiResponse] instance based on error
+    /// or successful future completion with model parsing
     return returnResponse;
   }
 
+  /// Handles the response based on status code and parses
+  /// model based on generic type check switch case
   Future<ApiResponse<T>> _handleRequest<T>(Response response) async {
     if (!kIsWeb && kDebugMode) {
       infoLog(
@@ -140,6 +170,7 @@ class Http with Core, Components, LogUtil {
     final int code = response.statusCode;
     if (kReleaseMode) {
       if (code == 401) {
+        await PreferenceBox.i.clearBox();
         await FirebaseAuth.instance.signOut().whenComplete(() {
           /// Navigate to signIn or onboarding views
         });

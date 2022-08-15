@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:singleton_pattern/config/api_config.dart';
 import 'package:singleton_pattern/data/api/connectivity_service.dart';
+import 'package:singleton_pattern/data/model/model_export.dart';
 import 'package:singleton_pattern/ui/components/components.dart';
 import 'package:singleton_pattern/utilities/core.dart';
 
@@ -9,7 +10,7 @@ class MyApp extends StatefulWidget {
   /// [MyApp] is the root widget of the application
   /// [MaterialApp] where all named routes, observers,
   /// theme and major error builders are connected with
-  /// each part of the application. 
+  /// each part of the application.
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -22,17 +23,23 @@ class _MyAppState extends State<MyApp> with Core, Components {
     return MaterialApp(
       /// Enables semantic borders on widgets with semantic behaviour enabled
       showSemanticsDebugger: false,
-      /// Enables performance overlay graph for the application on runtime 
+
+      /// Enables performance overlay graph for the application on runtime
       showPerformanceOverlay: false,
+
       /// Enables material grid over the app to assist pixel perfect alignment
       debugShowMaterialGrid: false,
+
       /// Enables debug banner on the top corner, useful in case of demo
       debugShowCheckedModeBanner: false,
       theme: theme,
+
       /// App title which will be shown in system recents screen on android/iOS
       title: '<<YOUR-APP-RECENTS-TITLE-NAME>>',
+
       /// App routes used in named route navigation
       routes: routes,
+
       /// Root Navigator key used to eleminate the usage of
       /// [BuildContext] in nested levels and uses the key
       /// to manipulate the [Navigator] stack based on [NavigationService]

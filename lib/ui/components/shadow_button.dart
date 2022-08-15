@@ -3,6 +3,8 @@ import 'package:singleton_pattern/ui/components/components.dart';
 import 'package:singleton_pattern/utilities/core.dart';
 
 class ShadowButton extends IconButton with Core, Components {
+  /// Icon button with same icon used as shadow for
+  /// better UX and Visual Assessability
   const ShadowButton({
     Key? key,
     required this.iconData,
@@ -25,6 +27,8 @@ class ShadowButton extends IconButton with Core, Components {
 }
 
 class ShadowPopButton<T> extends StatelessWidget with Core, Components {
+  /// Popup button with same icon used as shadow for
+  /// better UX and Visual Assessability
   const ShadowPopButton({
     Key? key,
     required this.iconData,

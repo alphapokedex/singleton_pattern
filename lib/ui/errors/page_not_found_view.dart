@@ -3,6 +3,8 @@ import 'package:singleton_pattern/ui/components/components.dart';
 import 'package:singleton_pattern/utilities/core.dart';
 
 class PageNotFoundView extends StatelessWidget with Core, Components {
+  /// No page found error view show a cat playing with wool saying 404
+  /// to the user when they stumble upon unknown routes or unteathered routes
   const PageNotFoundView({Key? key}) : super(key: key);
   static const String routeName = '/page-not-found';
 

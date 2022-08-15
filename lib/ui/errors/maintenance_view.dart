@@ -3,6 +3,8 @@ import 'package:singleton_pattern/ui/components/components.dart';
 import 'package:singleton_pattern/utilities/core.dart';
 
 class MaintenanceView extends StatelessWidget with Core, Components {
+  /// Maintenance error view shows construction people image
+  /// to the user when the server is down or restarting
   const MaintenanceView({Key? key}) : super(key: key);
   static const String routeName = '/maintenance';
 

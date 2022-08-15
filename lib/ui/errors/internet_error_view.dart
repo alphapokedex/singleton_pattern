@@ -3,6 +3,8 @@ import 'package:singleton_pattern/ui/components/components.dart';
 import 'package:singleton_pattern/utilities/core.dart';
 
 class InternetErrorView extends StatelessWidget with Core, Components {
+  /// No internet error view shows no internet text and broken cable image
+  /// to the user when they loose connection
   const InternetErrorView({Key? key}) : super(key: key);
   static const String routeName = '/no-internet';
 

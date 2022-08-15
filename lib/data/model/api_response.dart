@@ -1,4 +1,5 @@
 class ApiResponse<T> {
+  /// Model for api response
   ApiResponse({
     required this.statusCode,
     this.body,

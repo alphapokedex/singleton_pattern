@@ -5,22 +5,30 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:singleton_pattern/config/api_config.dart';
+import 'package:singleton_pattern/data/model/model_export.dart';
 import 'package:singleton_pattern/ui/components/components.dart';
 
 class ConnectivityService with Components {
+  /// Singleton for [ConnectivityService] class
+  ConnectivityService._();
   static final _singleton = ConnectivityService._();
+  factory ConnectivityService() => _singleton;
   static ConnectivityService get i => _singleton;
-  final serverStatus = ValueNotifier<ServerStatus>(ServerStatus());
-  late StreamSubscription _internetListener;
 
+  /// [ValueNotifier] for server status values
+  final serverStatus = ValueNotifier<ServerStatus>(ServerStatus());
+
+  /// Connectivity plugin instance
   final _plugin = Connectivity();
 
-  factory ConnectivityService() => _singleton;
+  /// late initialized stream subscription for internet connectivity changes
+  late StreamSubscription _internetListener;
 
-  ConnectivityService._();
-
+  /// dispose listener for connectivity service
   void dispose() async => await _internetListener.cancel();
 
+  /// [ConnectivityResult] handler mainly for connectivity
+  /// change stream subscription
   Future<void> handleConnectivityResult(ConnectivityResult result) async {
     try {
       if (result == ConnectivityResult.wifi) {
@@ -47,6 +55,7 @@ class ConnectivityService with Components {
     }
   }
 
+  /// Initialize server status values and listener for connectivity changes
   Future<void> init() async {
     if (kIsWeb) {
       updateStatus(isConnected: true, underMaintenance: false);
@@ -59,6 +68,7 @@ class ConnectivityService with Components {
     }
   }
 
+  /// Method to update current server status values
   void updateStatus({
     bool underMaintenance = false,
     bool isConnected = false,
@@ -67,13 +77,4 @@ class ConnectivityService with Components {
       ..underMaintenance = underMaintenance
       ..isConnected = isConnected;
   }
-}
-
-class ServerStatus {
-  bool underMaintenance;
-  bool isConnected;
-  ServerStatus({
-    this.isConnected = false,
-    this.underMaintenance = false,
-  });
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Google Icon custom painter class with curves and paths painted on canvas
 class GoogleIconCustomPaint extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {

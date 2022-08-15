@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FlexibleText extends StatelessWidget {
+  /// [FlexibleText] is a text widget wrapped in [FittedBox]
+  /// for more responsiveness and readability in visual assessability
   const FlexibleText({
     Key? key,
     required this.text,

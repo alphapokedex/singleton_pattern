@@ -70,6 +70,8 @@ extension StringExtensions on String {
     return wordList.first[0].toUpperCase();
   }
 
+  /// Provides [DateTime] for any appropriate string with correct format
+  /// otherwise throws assertions during runtime
   DateTime toDate() {
     assert(isNotEmpty, "String must be non-empty to be able to parse");
     final dateTime = DateTime.tryParse(this);

@@ -20,16 +20,18 @@ part 'typedefs.dart';
 part 'ui_strings.dart';
 
 mixin Core {
+  /// Core getters for the app root
   ThemeData get theme => AppTheme.appTheme;
-
   RouteFunction get routes => _Routes.appRoutes;
-
   GlobalKey<NavigatorState> get rootNavKey => _Routes.instance.rootNavKey;
-
-  NavigationService get navigator => NavigationService();
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) =>
       _Routes.onGenerateRoute(settings);
+
+  /// Public Navigator getter which will be accessed
+  /// throughout the application code
+  /// to manipulate [Navigator] Stack in memory
+  NavigationService get navigator => NavigationService();
 
   /// Navigation observers to monitor route navigation
   List<NavigatorObserver> get observers => _Routes.observers;

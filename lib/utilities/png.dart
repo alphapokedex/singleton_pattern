@@ -1,5 +1,6 @@
 part of 'core.dart';
 
+/// A class for collection of .png extension asset paths
 class AssetPngStrings {
   /// Dependency strings
   static const png = 'assets/png';

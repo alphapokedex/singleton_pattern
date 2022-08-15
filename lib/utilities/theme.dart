@@ -1,6 +1,7 @@
 part of 'core.dart';
 
 class AppTheme {
+  /// Color constants for internal use only
   static const _primaryColor = Color(0xFF1EBD73);
   static const _primaryColorLight = Color(0xFF8EDEB9);
   static const _primaryColorLighter = Color(0xFFD7FDEB);
@@ -20,6 +21,8 @@ class AppTheme {
   static const _black = Colors.black;
   static const _red = Colors.red;
   static const _redLighter = Color.fromARGB(255, 244, 199, 199);
+
+  /// Getter for app theme
   static ThemeData get appTheme {
     return ThemeData(
       fontFamily: 'Roboto',
@@ -80,6 +83,7 @@ class AppTheme {
     );
   }
 
+  /// Theme color scheme getters
   static Color get primaryColor => _primaryColor;
   static Color get primaryColorLight => _primaryColorLight;
   static Color get primaryColorLighter => _primaryColorLighter;
@@ -100,6 +104,7 @@ class AppTheme {
   static Color get red => _red;
   static Color get redLighter => _redLighter;
 
+  /// Text styles Getters
   static TextStyle get roboto900 => const TextStyle(
         fontWeight: FontWeight.w900,
       );
