@@ -1,4 +1,4 @@
-class EaserApiEndpoints {
+class ApiEndpoints {
   /// Basic auth endpoints
   static const String splash = 'api/splash';
   static const String checkUser = 'api/checkuser';
