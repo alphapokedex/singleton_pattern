@@ -20,7 +20,7 @@ part 'typedefs.dart';
 part 'ui_strings.dart';
 
 mixin Core {
-  ThemeData theme(BuildContext context) => AppTheme.easerTheme(context);
+  ThemeData get theme => AppTheme.appTheme;
 
   RouteFunction get routes => _Routes.appRoutes;
 

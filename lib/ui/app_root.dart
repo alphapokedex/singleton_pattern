@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> with Core, Components {
       showPerformanceOverlay: false,
       debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      theme: theme(context),
+      theme: theme,
       title: '<<YOUR-APP-RECENTS-TITLE-NAME>>',
       routes: routes,
       navigatorKey: rootNavKey,

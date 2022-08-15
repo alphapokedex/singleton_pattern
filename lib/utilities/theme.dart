@@ -20,7 +20,7 @@ class AppTheme {
   static const _black = Colors.black;
   static const _red = Colors.red;
   static const _redLighter = Color.fromARGB(255, 244, 199, 199);
-  static ThemeData easerTheme(BuildContext context) {
+  static ThemeData get appTheme {
     return ThemeData(
       fontFamily: 'Roboto',
       useMaterial3: true,
