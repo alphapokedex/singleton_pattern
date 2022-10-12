@@ -1,16 +1,25 @@
-# singleton_pattern
+# Singleton Pattern
+A new Flutter project template using singleton services/configs and mixins.
 
-A new Flutter project.
+## Architecture
+Folder structure followed in this project has singleton as it's main focus.
+Using core utilities as mixins.
+And local data caching using hive generated models.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+├───.fvm
+├───assets
+│   ├───font
+│   └───png
+└───lib
+    ├───config
+    ├───data
+    │   ├───api
+    │   ├───box
+    │   ├───generated_model
+    │   └───model
+    ├───ui
+    │   ├───components
+    │   └───errors
+    └───utilities
+```
